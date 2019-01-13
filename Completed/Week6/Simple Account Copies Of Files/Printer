@@ -1,0 +1,19 @@
+public class Printer {
+
+    public static void printMessage(String string) {
+        System.out.println(string);
+    }
+
+    public static void printCommandMenu(){
+        String[] commandArr = {"Create", "Update", "Read", "Delete", "Quit"};
+
+        String commands = "";
+
+        for(int i = 0; i < commandArr.length; i ++){
+            commands += i+1 + ". " + commandArr[i] + "\n";
+        }
+        commands = commands.trim();
+
+        printMessage(commands);
+    }
+}

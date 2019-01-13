@@ -1,0 +1,57 @@
+package io.zipcoder.polymorphism;
+import java.util.ArrayList;
+import java.util.Scanner;
+/**
+ * Created by leon on 11/6/17.
+ */
+public class MainApplication {
+    protected int numOfPets = 0;
+    protected ArrayList<String> petTypeArr = new ArrayList<>();
+    protected ArrayList<String> petNameArr = new ArrayList<>();
+
+    private Scanner keyboard = new Scanner(System.in);
+
+    /**
+     * Request user enter number of pets at console
+     * Sets numOfPets
+     */
+    public void setNumOfPets() {
+        System.out.println("How many pets do you have?");
+        numOfPets = keyboard.nextInt();
+    }
+
+    /**
+     *
+     * @return Gets numOfPets value
+     */
+    public int getNumOfPets(){
+        return numOfPets;
+    }
+
+    /**
+     * PreCondition: setNumOfPets is run, looping will run based on numOfPets
+     * PostConditon: Two ArrayLists, petTypeArr petNameArr are filled.
+     */
+    public void setPetTypeAndName() {
+        for(int i = 0; i < numOfPets; i++) {
+            System.out.println("What type is pet " + i + "?");
+            petTypeArr.add(keyboard.next());
+            System.out.println("What's the name of pet " + i + "?");
+            petNameArr.add(keyboard.next());
+        }
+    }
+    /**
+     * PreCondition: setNumOfPets and setPetTypeAndName is run.
+     * PostConditon: Return type and Pet Name on single line.
+     */
+    public String getPetTypeAndName(int x){
+            return ("Pet " + (x+1) + " is a " + petTypeArr.get(x) + " named: " + petNameArr.get(x));
+    }
+
+    public void printAllPetTypeAndName(){
+        for (int x = 0; x <= petNameArr.size(); x++){
+            System.out.println(getPetTypeAndName(x));
+        }
+    }
+
+}

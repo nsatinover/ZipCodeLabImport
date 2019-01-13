@@ -1,0 +1,60 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Console {
+
+    private Scanner scanner = new Scanner(System.in);
+
+    Console(){
+
+    }
+
+    public String getCMDFromUser(String msg){
+        try {
+            Printer.printMessage(msg);
+            String input = scanner.next();
+            input.toLowerCase().trim();
+            return input;
+        }catch (InputMismatchException e){
+            Printer.printMessage("Please enter a valid word.");
+            scanner.next();
+        }
+        return "";
+    }
+
+    public int getMainMenu(){
+        Printer.printCommandMenu();
+        int returnInput = 5;
+        try {
+            Printer.printMessage("Please choose a main option\n");
+            String input = scanner.next();
+
+            if (Integer.parseInt(input) < 6 && Integer.parseInt(input) > 0){
+                returnInput = Integer.parseInt(input);
+            }
+        }catch (InputMismatchException e){
+            Printer.printMessage("Please enter a valid number.");
+        }
+        finally {
+            return returnInput;
+        }
+    }
+
+    public int getIdToDelete(){
+        try {
+            Printer.printMessage("Please choose ID to delete:\n");
+            return scanner.nextInt();
+        }catch (InputMismatchException e){
+            Printer.printMessage("Please enter a valid number.");
+            return -1;
+        }
+    }
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
+    }
+}

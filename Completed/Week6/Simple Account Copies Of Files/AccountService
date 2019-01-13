@@ -1,0 +1,60 @@
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.dao.GenericRawResults;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
+import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.support.ConnectionSource;
+
+public class AccountService {
+    Console console = new Console();
+    // implement CRUD functionality
+
+    public void deleteId(Dao accountDao, int idToDelete){
+
+        try {
+            if (accountDao.idExists(idToDelete)) {
+                accountDao.deleteById(idToDelete);
+                Printer.printMessage("\nId deleted\n");
+            }
+            else {
+                Printer.printMessage("\nId does not exist\n");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void create(Dao accountDao){
+        try {
+            String name = console.getCMDFromUser("Enter name: ");
+            String password = console.getCMDFromUser("Set password: ");
+            Account account = new Account(name, password);
+            accountDao.create(account);
+            int id = account.getId();
+            Printer.printMessage("\nRecord " + id + " created.\n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void read(Dao accountDao) {
+
+        try {
+            List<Account> accountList = accountDao.queryForAll();
+            for (Account e: accountList) {
+                System.out.printf("|%-3s%-10s%-10s|\n" , e.getId(), e.getName(), e.getPassword());
+                System.out.println();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+}

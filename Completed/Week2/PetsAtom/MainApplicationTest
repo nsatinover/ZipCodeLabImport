@@ -1,0 +1,38 @@
+package io.zipcoder.polymorphism;
+import org.junit.Assert;
+import org.junit.Test;
+/**
+ * Created by leon on 11/6/17.
+ */
+public class MainApplicationTest {
+    @Test
+    public void TestGetNumOfPets(){
+        // Given
+        MainApplication main = new MainApplication();
+        main.numOfPets = 3; //set to 'protected' modifier to access variable
+        int expected = 3;
+
+        // When
+        int actual = main.getNumOfPets();
+
+        // Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void TestGetPetTypeAndName(){
+        // Given
+        MainApplication main = new MainApplication();
+        main.numOfPets = 1; //set to 'protected' modifier to access variable
+        main.petTypeArr.add("Cat"); //set to 'protected' modifier to access variable
+        main.petNameArr.add("Cheshire"); //set to 'protected' modifier to access variable
+        String expected = ("Pet 1 is a Cat named: Cheshire");
+
+        // When
+        String actual = main.getPetTypeAndName(0);
+
+        // Then
+        Assert.assertEquals(expected, actual);
+    }
+
+}

@@ -1,0 +1,27 @@
+package io.zipcoder.polymorphism;
+
+public class Pet {
+    private String name;
+
+    Pet(){
+        this.name = "default";
+    }
+
+    Pet(String newName){
+        this.name = newName;
+    }
+
+
+    public void setName(String newName){
+        name = newName;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String speak() {
+        return "Hi, I'm an object called pet who's named: " + this.getName();
+    }
+
+}

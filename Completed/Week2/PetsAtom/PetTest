@@ -1,0 +1,56 @@
+package io.zipcoder.polymorphism;
+import org.junit.Assert;
+import org.junit.Test;
+
+public class PetTest {
+
+    @Test
+    /**
+     * Tests the getName and setName methods
+     */
+    public void setGetNameTest(){
+        // Given
+        Pet pet = new Pet();
+        pet.setName("anyname");
+        String expected = "anyname";
+
+        // When
+        String actual = pet.getName();
+
+        // Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    /**
+     * Tests default constructor
+     */
+    public void defaultConstructor(){
+        // Given
+        Pet pet = new Pet();
+        String expected = "default";
+
+        // When
+        String actual = pet.getName();
+
+        // Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    /**
+     * Tests the speak method
+     */
+    public void speakTest(){
+        // Given
+        Pet pet = new Pet();
+        pet.setName("anyname");
+        pet.speak();
+        String expected = "Hi, I'm an object called pet who's named: anyname";
+        // When
+        String actual = "Hi, I'm an object called pet who's named: " + pet.getName();
+
+        // Then
+        Assert.assertEquals(expected, actual);
+    }
+}

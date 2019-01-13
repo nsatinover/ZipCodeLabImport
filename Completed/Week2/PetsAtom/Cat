@@ -1,0 +1,15 @@
+package io.zipcoder.polymorphism;
+
+public class Cat extends Pet {
+    Cat() {
+        super();
+    }
+
+    Cat(String newName){
+        super(newName);
+    }
+
+    public String speak() {
+        return "Hi, I'm an object called cat who's named: " + this.getName();
+    }
+}
